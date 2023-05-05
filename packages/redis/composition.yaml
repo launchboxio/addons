@@ -1,0 +1,47 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: redis
+  labels:
+    provider: helm
+    crossplane.io/xrd: redis.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io
+    kind: LbxRedisCluster
+  resources:
+    - name: redis
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: example-redis
+        spec:
+          forProvider:
+            chart:
+              name: redis
+              repository: oci://registry-1.docker.io/bitnamicharts
+              version: 7.0.11
+            namespace: default
+            values:
+              architecture: standalone
+              auth:
+                enabled: true
+                password: ""
+              metrics:
+                enabled: true
+              master:
+                persistence:
+                  enabled: true
+                  size: 8Gi
+            valuesFrom: []
+            set: []
+            patches:
+              - type: fromCompositeFieldPath
+                fromFieldPath: spec.password
+                toFieldPath: spec.forProvider.values.auth.password
+              - type: fromCompositeFieldPath
+                fromFieldPath: spec.size
+                toFieldPath: spec.forProvider.values.master.persistence.size
