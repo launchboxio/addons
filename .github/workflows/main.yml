@@ -29,13 +29,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         uses: crossplane-contrib/xpkg-action@v0.2.0
-        working-directory: packages/${{ matrix.package }}
         with:
           channel: stable
           version: current
           command: build configuration -f ${{ github.workspace }}/packages/${{ matrix.package }} --name package.xpkg
       - name: Push
         uses: crossplane-contrib/xpkg-action@v0.2.0
-        working-directory: packages/${{ matrix.package }}
         with:
           command: push configuration -f ${{ github.workspace }}/packages/${{ matrix.package }}/package.xpkg ghcr.io/launchboxio/addons/${{ matrix.package }}
