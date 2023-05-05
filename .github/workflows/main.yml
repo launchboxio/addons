@@ -27,8 +27,8 @@ jobs:
         with:
           channel: stable
           version: current
-          command: build configuration -f ${{ github.workspace }}/packages/redis
+          command: build configuration -f ${{ github.workspace }}/packages/redis --name package.xpkg
       - name: Push
         uses: crossplane-contrib/xpkg-action@v0.2.0
         with:
-          command: push configuration -f ${{ github.workspace }}/packages/redis ghcr.io/launchboxio/addons/packages/redis
+          command: push configuration -f ${{ github.workspace }}/packages/redis/package.xpkg ghcr.io/launchboxio/addons/packages/redis
