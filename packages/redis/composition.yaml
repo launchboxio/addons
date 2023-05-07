@@ -35,7 +35,7 @@ spec:
               master:
                 persistence:
                   enabled: true
-                  size: 8Gi
+                  size: 2Gi
             valuesFrom: []
             set: []
             patches:
