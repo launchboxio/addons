@@ -2,7 +2,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: redis.addons.launchboxhq.io
+  name: lbxredisclusters.addons.launchboxhq.io
 spec:
   group: addons.launchboxhq.io
   names:
