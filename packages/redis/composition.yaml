@@ -5,7 +5,7 @@ metadata:
   name: redis
   labels:
     provider: helm
-    crossplane.io/xrd: redis.addons.launchboxhq.io
+    crossplane.io/xrd: lbxredisclusters.addons.launchboxhq.io
 spec:
   writeConnectionSecretsToNamespace: crossplane-system
   compositeTypeRef:
