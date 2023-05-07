@@ -9,7 +9,7 @@ metadata:
 spec:
   writeConnectionSecretsToNamespace: crossplane-system
   compositeTypeRef:
-    apiVersion: addons.launchboxhq.io
+    apiVersion: addons.launchboxhq.io/v1alpha1
     kind: LbxRedisCluster
   resources:
     - name: redis
