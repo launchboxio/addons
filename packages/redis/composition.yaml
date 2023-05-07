@@ -23,7 +23,7 @@ spec:
             chart:
               name: redis
               repository: oci://registry-1.docker.io/bitnamicharts
-              version: 17.10.2
+              version: 17.10.1
             namespace: default
             values:
               architecture: standalone
