@@ -5,11 +5,11 @@ metadata:
   name: redis
   labels:
     provider: helm
-    crossplane.io/xrd: redis.addons.launchboxhq.io
+    crossplane.io/xrd: lbxredisclusters.addons.launchboxhq.io
 spec:
   writeConnectionSecretsToNamespace: crossplane-system
   compositeTypeRef:
-    apiVersion: addons.launchboxhq.io
+    apiVersion: addons.launchboxhq.io/v1alpha1
     kind: LbxRedisCluster
   resources:
     - name: redis
@@ -23,7 +23,7 @@ spec:
             chart:
               name: redis
               repository: oci://registry-1.docker.io/bitnamicharts
-              version: 7.0.11
+              version: 17.10.1
             namespace: default
             values:
               architecture: standalone
@@ -35,7 +35,7 @@ spec:
               master:
                 persistence:
                   enabled: true
-                  size: 8Gi
+                  size: 2Gi
             valuesFrom: []
             set: []
             patches:
