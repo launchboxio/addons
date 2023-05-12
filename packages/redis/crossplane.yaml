@@ -9,6 +9,7 @@ metadata:
     meta.crossplane.io/license: MIT
     meta.crossplane.io/description: |
       Configuration for deployment of Redis Addon
+    meta.launchbox.io/target: redis.addons.launchboxhq.io
 spec:
   crossplane:
     version: ">=v1.8.0-0"
