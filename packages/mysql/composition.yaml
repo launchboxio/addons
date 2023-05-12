@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: mysql
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxmysqlclusters.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxMySQLCluster
+  resources:
+    - name: mysql
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: mysql
+        spec:
+          forProvider:
+            chart:
+              name: mysql
+              repository: oci://registry-1.docker.io/bitnamicharts
+              version: 9.9.1
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

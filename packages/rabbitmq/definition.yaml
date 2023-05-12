@@ -1,0 +1,30 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: lbxzookeeper.addons.launchboxhq.io
+spec:
+  group: addons.launchboxhq.io
+  names:
+    kind: LbxZookeeper
+    plural: lbxzookeepers
+  claimNames:
+    kind: Zookeeper
+    plural: zookeepers
+  connectionSecretKeys:
+    - password
+    - endpoint
+    - port
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              description: "The OpenAPIV3Schema of this Composite Resource Definition."
+              properties: {}
+              required: []

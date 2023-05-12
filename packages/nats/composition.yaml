@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: nats
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxnats.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxNats
+  resources:
+    - name: nats
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: nats
+        spec:
+          forProvider:
+            chart:
+              name: nats
+              repository: https://charts.min.io/
+              version: 7.8.1
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: mariadb
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxmariadbcluster.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxMariaDBCluster
+  resources:
+    - name: mariadb
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: mariadb
+        spec:
+          forProvider:
+            chart:
+              name: mariadb
+              repository: oci://registry-1.docker.io/bitnamicharts
+              version: 12.2.2
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: harbor
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxharbor.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxHarbor
+  resources:
+    - name: harbor
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: harbor
+        spec:
+          forProvider:
+            chart:
+              name: harbor
+              repository: oci://registry-1.docker.io/bitnamicharts
+              version: 16.5.3
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

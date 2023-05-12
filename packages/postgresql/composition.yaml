@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: postgresql
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxpostgresqlclusters.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxPostgresSQLCluster
+  resources:
+    - name: postgresql
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: postgresql
+        spec:
+          forProvider:
+            chart:
+              name: postgresql
+              repository: oci://registry-1.docker.io/bitnamicharts
+              version: 12.4.3
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

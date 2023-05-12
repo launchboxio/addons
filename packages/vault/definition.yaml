@@ -2,15 +2,15 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: lbxrediscluster.addons.launchboxhq.io
+  name: lbxvaultclusters.addons.launchboxhq.io
 spec:
   group: addons.launchboxhq.io
   names:
-    kind: LbxRedisCluster
-    plural: lbxredisclusters
+    kind: LbxVaultCluster
+    plural: lbxvaultclusters
   claimNames:
-    kind: RedisCluster
-    plural: redisclusters
+    kind: VaultCluster
+    plural: vaultcluster
   connectionSecretKeys:
     - password
     - endpoint

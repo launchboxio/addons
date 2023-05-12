@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: etcd
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxetcd.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxEtcd
+  resources:
+    - name: etcd
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: etcd
+        spec:
+          forProvider:
+            chart:
+              name: etcd
+              repository: https://charts.min.io/
+              version: 8.11.2
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

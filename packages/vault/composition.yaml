@@ -2,40 +2,30 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: redis
+  name: vault
   labels:
     provider: helm
-    crossplane.io/xrd: lbxrediscluster.addons.launchboxhq.io
+    crossplane.io/xrd: lbxvaultcluster.addons.launchboxhq.io
 spec:
   writeConnectionSecretsToNamespace: crossplane-system
   compositeTypeRef:
     apiVersion: addons.launchboxhq.io/v1alpha1
-    kind: LbxRedisCluster
+    kind: LbxVaultCluster
   resources:
-    - name: redis
+    - name: vault
       base:
         apiVersion: helm.crossplane.io/v1alpha1
         kind: Release
         metadata:
-          name: redis
+          name: vault
         spec:
           forProvider:
             chart:
-              name: redis
+              name: vault
               repository: oci://registry-1.docker.io/bitnamicharts
-              version: 17.10.1
+              version: 0.1.2
             namespace: default
-            values:
-              architecture: standalone
-              auth:
-                enabled: true
-                password: ""
-              metrics:
-                enabled: true
-              master:
-                persistence:
-                  enabled: true
-                  size: 2Gi
+            values: {}
             valuesFrom: []
             set: []
             patches:

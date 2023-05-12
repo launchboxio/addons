@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: zookeeper
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxzookeeper.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxRabbitMQ
+  resources:
+    - name: zookeeper
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: zookeeper
+        spec:
+          forProvider:
+            chart:
+              name: zookeeper
+              repository: https://charts.min.io/
+              version: 11.3.2
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

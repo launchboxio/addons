@@ -1,0 +1,17 @@
+---
+apiVersion: meta.pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: mariadb
+  annotations:
+    meta.crossplane.io/maintainer: Launchbox Maintainers <maintainers@launchboxhq.io>
+    meta.crossplane.io/source: github.com/launchboxio/addons/packages/mariadb
+    meta.crossplane.io/license: MIT
+    meta.crossplane.io/description: |
+      Configuration for deployment of MariaDB Addon
+spec:
+  crossplane:
+    version: ">=v1.8.0-0"
+  dependsOn:
+    - provider: xpkg.upbound.io/crossplane-contrib/provider-helm
+      version: ">=0.14.0"

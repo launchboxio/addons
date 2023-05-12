@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: minio
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxminios.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxMinio
+  resources:
+    - name: minio
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: minio
+        spec:
+          forProvider:
+            chart:
+              name: minio
+              repository: https://charts.min.io/
+              version: 5.0.9
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

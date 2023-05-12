@@ -1,0 +1,31 @@
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: memcache
+  labels:
+    provider: helm
+    crossplane.io/xrd: lbxmemcache.addons.launchboxhq.io
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: addons.launchboxhq.io/v1alpha1
+    kind: LbxMemcache
+  resources:
+    - name: memcache
+      base:
+        apiVersion: helm.crossplane.io/v1alpha1
+        kind: Release
+        metadata:
+          name: memcache
+        spec:
+          forProvider:
+            chart:
+              name: memcache
+              repository: oci://registry-1.docker.io/bitnamicharts
+              version: 6.4.2
+            namespace: default
+            values: {}
+            valuesFrom: []
+            set: []
+            patches: []

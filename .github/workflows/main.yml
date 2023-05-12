@@ -16,7 +16,20 @@ jobs:
     strategy:
       matrix:
         package:
+          - airflow
+          - etcd
+          - harbor
+          - mariadb
+          - memcache
+          - minio
+          - mongodb
+          - mysql
+          - nats
+          - postgresql
+          - rabbitmq
           - redis
+          - vault
+          - zookeeper
 
     steps:
       - name: Checkout code
