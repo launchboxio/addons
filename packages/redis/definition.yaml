@@ -36,5 +36,3 @@ spec:
                   default: "2Gi"
               required:
                 - password
-
-# {"name":"lbxrediscluster.addons.launchboxhq.io"}, "uid": "a80c6ee8-4d9e-4b86-94a4-5411c7439356", "version": "2866370", "name": "lbxrediscluster.addons.launchboxhq.io", "error": "cannot create object: CustomResourceDefinition.apiextensions.k8s.io \"lbxrediscluster.addons.launchboxhq.io\" is invalid: metadata.name: Invalid value: \"lbxrediscluster.addons.launchboxhq.io\": must be spec.names.plural+\".\"+spec.group"}
