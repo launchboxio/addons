@@ -27,6 +27,9 @@ spec:
               type: object
               description: "The OpenAPIV3Schema of this Composite Resource Definition."
               properties:
+                providerConfigRef:
+                  type: string
+                  description: "The provider to use for deployment"
                 password:
                   type: string
                   description: "Password for the redis cluster"

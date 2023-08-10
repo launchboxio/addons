@@ -2,6 +2,5 @@ apiVersion: addons.launchboxhq.io/v1alpha1
 kind: RedisCluster
 metadata:
   name: testing
-  namespace: default
-spec:
-  password: testing
+  namespace: kube-system
+spec: {}
