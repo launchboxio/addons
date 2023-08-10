@@ -38,16 +38,18 @@ spec:
                   size: 2Gi
             valuesFrom: []
             set: []
-            patches:
-              - type: fromCompositeFieldPath
-                fromFieldPath: spec.size
-                toFieldPath: spec.forProvider.values.master.persistence.size
-              - type: fromCompositeFieldPath
-                fromFieldPath: metadata.namespace
-                toFieldPath: spec.forProvider.namespace
-              - type: fromCompositeFieldPath
-                fromFieldPath: metadata.namespace
-                toFieldPath: metadata.namespace
-              - type: fromCompositeFieldPath
-                fromFieldPath: spec.providerConfigRef
-                toFieldPath: spec.providerConfigRef.name
+          providerConfigRef:
+            name: default
+      patches:
+        - type: fromCompositeFieldPath
+          fromFieldPath: spec.size
+          toFieldPath: spec.forProvider.values.master.persistence.size
+        - type: fromCompositeFieldPath
+          fromFieldPath: metadata.namespace
+          toFieldPath: spec.forProvider.namespace
+        - type: fromCompositeFieldPath
+          fromFieldPath: metadata.namespace
+          toFieldPath: metadata.namespace
+        - type: fromCompositeFieldPath
+          fromFieldPath: spec.providerConfigRef
+          toFieldPath: spec.providerConfigRef.name

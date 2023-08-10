@@ -3,4 +3,5 @@ kind: RedisCluster
 metadata:
   name: testing
   namespace: kube-system
-spec: {}
+spec:
+  providerConfigRef: jovial-ant-zknca
