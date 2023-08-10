@@ -34,5 +34,4 @@ spec:
                   type: string
                   description: "The desired storage capacity of the database, in GB."
                   default: "2Gi"
-              required:
-                - password
+              required: []

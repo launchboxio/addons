@@ -40,8 +40,11 @@ spec:
             set: []
             patches:
               - type: fromCompositeFieldPath
-                fromFieldPath: spec.password
-                toFieldPath: spec.forProvider.values.auth.password
-              - type: fromCompositeFieldPath
                 fromFieldPath: spec.size
                 toFieldPath: spec.forProvider.values.master.persistence.size
+              - type: fromCompositeFieldPath
+                fromFieldPath: metadata.namespace
+                toFieldPath: spec.forProvider.namespace
+              - type: fromCompositeFieldPath
+                fromFieldPath: metadata.namespace
+                toFieldPath: metadata.namespace
