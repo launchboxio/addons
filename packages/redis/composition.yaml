@@ -7,7 +7,7 @@ metadata:
     provider: helm
     crossplane.io/xrd: lbxrediscluster.addons.launchboxhq.io
 spec:
-  writeConnectionSecretsToNamespace: crossplane-system
+  writeConnectionSecretsToNamespace: lbx-system
   compositeTypeRef:
     apiVersion: addons.launchboxhq.io/v1alpha1
     kind: LbxRedisCluster
@@ -40,6 +40,18 @@ spec:
             set: []
           providerConfigRef:
             name: default
+      connectionDetails:
+        - name: REDIS_URL
+          type: CombineFromComposite
+          combine:
+            variables:
+                - fromFieldPath: spec.forProvider.values.auth.password
+                - fromFieldPath: spec.field2
+                - fromFieldPath: metadata.annotations["crossplane.io/external-name"]
+            strategy: string
+            string:
+              fmt: "redis://:%s@%s.%s:6379"
+
       patches:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.size
