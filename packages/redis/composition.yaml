@@ -57,4 +57,4 @@ spec:
     - name: secret-extracter
       type: Container
       container:
-        image: ghcr.io/launchboxio/secret-extracter-function:sha-eced87e
+        image: ghcr.io/launchboxio/secret-extracter-function:sha-1cba4ad
