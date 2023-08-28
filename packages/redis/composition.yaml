@@ -58,3 +58,5 @@ spec:
       type: Container
       container:
         image: ghcr.io/launchboxio/secret-extracter-function:sha-5add173
+        network:
+          policy: Runner
